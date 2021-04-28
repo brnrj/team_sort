@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -26,6 +28,30 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.LoL {
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+}
+
+.Main-Team {
+  padding-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+.Team {
+  width: 200px;
+  height: 200px;
+}
+
+.Meme {
+  margin-top: 150px;
+  font-size: xx-large;
+}
+.Meme p {
+  padding-right: 10px;
 }
 
 @keyframes App-logo-spin {

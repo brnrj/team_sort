@@ -3,11 +3,11 @@ import './App.css';
 import { CSVReader } from 'react-papaparse';
 import logo from './images/logo.jpeg';
 import { readRemoteFile } from 'react-papaparse';
-import MemeImg from './images/meme.jpeg'
+import MemeImg from './images/meme.jpeg';
 
 function CSVReader2() {
-  const [overall] = useState(5)
-  const [name] = useState(0)
+  const [overall] = useState(5);
+  const [name] = useState(0);
   const [data, setData] = useState([]);
   const [sortedData, setSortedData] = useState([]);
   const [checked, setChecked] = useState(false);
@@ -16,14 +16,17 @@ function CSVReader2() {
   const [team3, setTeam3] = useState([]);
 
   function handleClickWeb() {
-    readRemoteFile('https://docs.google.com/spreadsheets/d/e/2PACX-1vRoADoJc-w_dAjQ_GNlSX99KpDsdzYJ6Kau3OI50_f2CamLySulbEStphsrrvtiYns0Mk8aVlLyNSXl/pub?gid=238086313&single=true&output=csv', {
-      complete: (results) => {
-        console.log('Results:', results);
-        let teste = results.data.map((element) => ({...element}))
-        setData(teste)
-      },
-    });
-  };
+    readRemoteFile(
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoADoJc-w_dAjQ_GNlSX99KpDsdzYJ6Kau3OI50_f2CamLySulbEStphsrrvtiYns0Mk8aVlLyNSXl/pub?gid=238086313&single=true&output=csv',
+      {
+        complete: (results) => {
+          console.log('Results:', results);
+          let newData = results.data.map((element) => ({ ...element }));
+          setData(newData);
+        },
+      }
+    );
+  }
 
   function handleClick() {
     setChecked(true);
@@ -42,13 +45,13 @@ function CSVReader2() {
     console.log(data);
   }
 
-  function algoritmoGuloso(sortedData){
+  function algoritmoGuloso(sortedData) {
     let time1 = [];
     let time2 = [];
     let time3 = [];
     const obj = {
-      jogador : sortedData
-    }
+      jogador: sortedData,
+    };
 
     // let times = [time1, time2, time3]
 
@@ -56,19 +59,18 @@ function CSVReader2() {
     //   times[i % 3].push(sortedData[i])
     // }
 
-    let k = 0
-    for(let i = 0; i < 24 ; i += 3){
-      if (k % 2 === 0){
-        time1.push(obj.jogador[i])
-        time2.push(obj.jogador[i + 1])
-        time3.push(obj.jogador[i + 2])
+    let k = 0;
+    for (let i = 0; i < 24; i += 3) {
+      if (k % 2 === 0) {
+        time1.push(obj.jogador[i]);
+        time2.push(obj.jogador[i + 1]);
+        time3.push(obj.jogador[i + 2]);
+      } else {
+        time1.push(obj.jogador[i + 2]);
+        time2.push(obj.jogador[i + 1]);
+        time3.push(obj.jogador[i]);
       }
-      else {
-        time1.push(obj.jogador[i + 2])
-        time2.push(obj.jogador[i + 1])
-        time3.push(obj.jogador[i])
-      }
-      k++
+      k++;
     }
     setTeam1(time1);
     setTeam2(time2);
@@ -77,10 +79,14 @@ function CSVReader2() {
 
   useEffect(() => {
     data.sort((a, b) =>
-    a[overall] > b[overall] ? 1 : b[overall] > a[overall] ? -1 : Math.floor(Math.random() * 2) || -1
-  );
-  setSortedData(data);
-  algoritmoGuloso(sortedData);
+      a[overall] > b[overall]
+        ? 1
+        : b[overall] > a[overall]
+        ? -1
+        : Math.floor(Math.random() * 2) || -1
+    );
+    setSortedData(data);
+    algoritmoGuloso(sortedData);
   }, [data, sortedData, overall]);
 
   return (
@@ -95,36 +101,46 @@ function CSVReader2() {
         <span>Drop CSV file here or click to upload.</span>
       </CSVReader>
       <div className="App">
-        <div className='Meme'>
-          {!checked && 
-          <div>
-            <img src={logo} alt="logo"/>
-            <p>Vai um Gundanzim ai Fei?</p>
-          </div>}
-          {checked && 
-          <div>
-            <img src={MemeImg} alt="logo"/>
-          </div>}
-          <button onClick={handleClick}>Clica Aqui Bonitão</button>
-        </div> 
-        {(checked && data.length) && (
+        <div className="Meme">
+          {!checked && (
+            <div>
+              <img src={logo} alt="logo" />
+              <p>Vai um Gundanzim ai Fei?</p>
+            </div>
+          )}
+          {checked && (
+            <div>
+              <img src={MemeImg} alt="logo" />
+            </div>
+          )}
+          <button disabled={!data.length} onClick={handleClick}>
+            Clica Aqui Bonitão
+          </button>
+        </div>
+        {checked && data.length && (
           <div className="Main-Team">
             <div className="Team">
               <p className="titulo">Time 1</p>
               {team1.map((element, index) => (
-                <p className="LoL blue" key={index}>{element[name]}</p>
+                <p className="LoL blue" key={index}>
+                  {element[name]}
+                </p>
               ))}
             </div>
             <div className="Team">
-            <p className="titulo">Time 2</p>
-            {team2.map((element, index) => (
-                <p className="LoL red" key={index}>{element[name]}</p>
+              <p className="titulo">Time 2</p>
+              {team2.map((element, index) => (
+                <p className="LoL red" key={index}>
+                  {element[name]}
+                </p>
               ))}
             </div>
             <div className="Team">
-            <p className="titulo">Time 3</p>
-            {team3.map((element, index) => (
-                <p className="LoL green" key={index}>{element[name]}</p>
+              <p className="titulo">Time 3</p>
+              {team3.map((element, index) => (
+                <p className="LoL green" key={index}>
+                  {element[name]}
+                </p>
               ))}
             </div>
           </div>

@@ -1,3 +1,7 @@
+* {
+  background-color: #011627;
+  color: white;
+}
 .App {
   text-align: center;
   display: flex;
@@ -30,7 +34,17 @@
   color: #61dafb;
 }
 
+img {
+  height: 200px;
+  width: 200px;
+}
+
 .LoL {
+  color: black;
+  background-color: black;
+  border-radius: 10px;
+}
+.titulo {
   color: white;
   background-color: black;
   border-radius: 10px;
@@ -41,10 +55,6 @@
   display: flex;
   justify-content: center;
 }
-.Team {
-  width: 200px;
-  height: 200px;
-}
 
 .Meme {
   margin-top: 150px;
@@ -54,6 +64,13 @@
   padding-right: 10px;
 }
 
+.Team {
+  width: 200px;
+  height: 200px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -61,4 +78,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.red {
+  background-color: #e71d36;
+}
+
+.blue {
+  background-color: #2ec4b6;
+}
+
+.green {
+  background-color: #ff9f1c;
 }

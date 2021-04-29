@@ -3,6 +3,7 @@ import './App.css';
 import { CSVReader } from 'react-papaparse';
 import logo from './images/logo.jpeg';
 import { readRemoteFile } from 'react-papaparse';
+import MemeImg from './images/meme.jpeg'
 
 function CSVReader2() {
   const [overall] = useState(5)
@@ -100,7 +101,10 @@ function CSVReader2() {
             <img src={logo} alt="logo"/>
             <p>Vai um Gundanzim ai Fei?</p>
           </div>}
-          {checked && <p>MEME</p>}
+          {checked && 
+          <div>
+            <img src={MemeImg} alt="logo"/>
+          </div>}
           <button onClick={handleClick}>Clica Aqui Bonitão</button>
         </div> 
         {(checked && data.length) && (

@@ -75,17 +75,13 @@ function CSVReader2() {
   }
 
   useEffect(() => {
-  sortTopPlayer(data);
+    data.sort((a, b) =>
+    a[overall] > b[overall] ? 1 : b[overall] > a[overall] ? -1 : 0
+  );
+  setSortedData(data);
   algoritmoGuloso(sortedData);
-  }, );
+  }, [data, sortedData, overall]);
 
-  function sortTopPlayer(data) {
-      data.sort((a, b) =>
-      a[overall] > b[overall] ? 1 : b[overall] > a[overall] ? -1 : 0
-    );
-    setSortedData(data);
-  }
-  console.log(team1, team2, team3)
   return (
     <>
       <button onClick={handleClickWeb}>readRemoteFile</button>

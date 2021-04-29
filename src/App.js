@@ -77,7 +77,7 @@ function CSVReader2() {
   useEffect(() => {
   sortTopPlayer(data);
   algoritmoGuloso(sortedData);
-  }, [data, sortedData]);
+  }, );
 
   function sortTopPlayer(data) {
       data.sort((a, b) =>

@@ -76,7 +76,7 @@ function CSVReader2() {
 
   useEffect(() => {
     data.sort((a, b) =>
-    a[overall] > b[overall] ? 1 : b[overall] > a[overall] ? -1 : 0
+    a[overall] > b[overall] ? 1 : b[overall] > a[overall] ? -1 : Math.floor(Math.random() * 2) || -1
   );
   setSortedData(data);
   algoritmoGuloso(sortedData);

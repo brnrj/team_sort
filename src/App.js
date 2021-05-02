@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import { CSVReader } from 'react-papaparse';
-import logo from './images/logo.jpeg';
 import { readRemoteFile } from 'react-papaparse';
+import './App.css';
+import logo from './images/logo.jpeg';
 import imgUrl from './dataImages';
 
 function CSVReader2() {
@@ -98,7 +98,7 @@ function CSVReader2() {
   return (
     <>
       <div className="App">
-        <div className="Inputs">
+        {!checked &&  <div className="Inputs">
           <button onClick={handleClickWeb}>Load from Google Drive</button>
           <CSVReader
             onDrop={handleOnDrop}
@@ -108,14 +108,14 @@ function CSVReader2() {
           >
             <span>Drop CSV file here or click to upload.</span>
           </CSVReader>
-        </div>
+        </div>}
         <div className="Meme">
-          {!checked && (
+          {!checked ? (
             <div>
               <img src={logo} alt="logo" />
               <p>Vai um Gundanzim ai Fei? Carrega o Arquivo CSV ae!</p>
             </div>
-          )}
+          ) : <p>IXQUECE</p>}
           {checked && (
             <div>
               <img src={imgUrl[randomImg]} alt="meme" />

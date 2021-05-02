@@ -3,11 +3,12 @@ import './App.css';
 import { CSVReader } from 'react-papaparse';
 import logo from './images/logo.jpeg';
 import { readRemoteFile } from 'react-papaparse';
-import MemeImg from './images/meme.jpeg';
+import imgUrl from './dataImages';
 
 function CSVReader2() {
   const [overall] = useState(5);
   const [name] = useState(0);
+  const [randomImg, setRandomImg] = useState();
   const [data, setData] = useState([]);
   const [sortedData, setSortedData] = useState([]);
   const [checked, setChecked] = useState(false);
@@ -77,6 +78,10 @@ function CSVReader2() {
     setTeam3(time3);
   }
 
+  function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
   useEffect(() => {
     data.sort((a, b) =>
       a[overall] > b[overall]
@@ -85,36 +90,39 @@ function CSVReader2() {
         ? -1
         : Math.floor(Math.random() * 2) || -1
     );
+    setRandomImg(getRandomArbitrary(0, imgUrl.length));
     setSortedData(data);
     algoritmoGuloso(sortedData);
   }, [data, sortedData, overall]);
-
+  
   return (
     <>
-      <button onClick={handleClickWeb}>readRemoteFile</button>
-      <CSVReader
-        onDrop={handleOnDrop}
-        onError={handleOnError}
-        addRemoveButton
-        onRemoveFile={handleOnRemoveFile}
-      >
-        <span>Drop CSV file here or click to upload.</span>
-      </CSVReader>
       <div className="App">
+        <div className="Inputs">
+          <button onClick={handleClickWeb}>Load from Google Drive</button>
+          <CSVReader
+            onDrop={handleOnDrop}
+            onError={handleOnError}
+            addRemoveButton
+            onRemoveFile={handleOnRemoveFile}
+          >
+            <span>Drop CSV file here or click to upload.</span>
+          </CSVReader>
+        </div>
         <div className="Meme">
           {!checked && (
             <div>
               <img src={logo} alt="logo" />
-              <p>Vai um Gundanzim ai Fei?</p>
+              <p>Vai um Gundanzim ai Fei? Carrega o Arquivo CSV ae!</p>
             </div>
           )}
           {checked && (
             <div>
-              <img src={MemeImg} alt="logo" />
+              <img src={imgUrl[randomImg]} alt="meme" />
             </div>
           )}
-          <button disabled={!data.length} onClick={handleClick}>
-            Clica Aqui Bonitão
+          <button disabled={!data.length} onClick={handleClick} className={!data.length || checked ? "displayButtonFalse" : "displayButtonTrue"}>
+            Agora Clica Aqui!
           </button>
         </div>
         {checked && data.length && (

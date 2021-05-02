@@ -34,6 +34,17 @@
   color: #61dafb;
 }
 
+.Inputs {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.Inputs button {
+  margin: 10px;
+  border-radius: 10px;
+}
+
 img {
   height: 200px;
   width: 200px;
@@ -57,7 +68,7 @@ img {
 }
 
 .Meme {
-  margin-top: 150px;
+  margin-top: 50px;
   font-size: xx-large;
 }
 .Meme p {
@@ -71,15 +82,6 @@ img {
   border-radius: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .red {
   background-color: #e71d36;
 }
@@ -90,4 +92,13 @@ img {
 
 .green {
   background-color: #ff9f1c;
+}
+
+.displayButtonFalse {
+  display : none;
+}
+
+.displayButtonTrue {
+  border-radius: 10px;
+  height: 50px;
 }

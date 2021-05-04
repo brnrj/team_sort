@@ -46,42 +46,6 @@ function CSVReader2() {
     console.log(data);
   }
 
-  function algoritmoGuloso(sortedData) {
-    let time1 = [];
-    let time2 = [];
-    let time3 = [];
-    const obj = {
-      jogador: sortedData,
-    };
-
-    // let times = [time1, time2, time3]
-
-    // for(let i = 0; i < 24 ; i++){
-    //   times[i % 3].push(sortedData[i])
-    // }
-
-    let k = 0;
-    for (let i = 0; i < 24; i += 3) {
-      if (k % 2 === 0) {
-        time1.push(obj.jogador[i]);
-        time2.push(obj.jogador[i + 1]);
-        time3.push(obj.jogador[i + 2]);
-      } else {
-        time1.push(obj.jogador[i + 2]);
-        time2.push(obj.jogador[i + 1]);
-        time3.push(obj.jogador[i]);
-      }
-      k++;
-    }
-    setTeam1(time1);
-    setTeam2(time2);
-    setTeam3(time3);
-  }
-
-  function getRandomArbitrary(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-  }
-
   useEffect(() => {
     data.sort((a, b) =>
       a[overall] > b[overall]
@@ -94,34 +58,75 @@ function CSVReader2() {
     setSortedData(data);
     algoritmoGuloso(sortedData);
   }, [data, sortedData, overall]);
-  
+
+  function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  function algoritmoGuloso(sortedData) {
+    let jogadoresX = [];
+    let jogadoresY = [];
+    let jogadoresZ = [];
+
+    if (sortedData.length === 25) {
+      let k = 0;
+      for (let i = 0; i < 24; i += 3) {
+        if (k % 2 === 0) {
+          jogadoresX.push(sortedData[i]);
+          jogadoresY.push(sortedData[i + 1]);
+          jogadoresZ.push(sortedData[i + 2]);
+        } else {
+          jogadoresX.push(sortedData[i + 2]);
+          jogadoresY.push(sortedData[i + 1]);
+          jogadoresZ.push(sortedData[i]);
+        }
+        k++;
+      }
+      setTeam1(jogadoresX);
+      setTeam2(jogadoresY);
+      setTeam3(jogadoresZ);
+    }
+  }
+
   return (
     <>
       <div className="App">
-        {!checked &&  <div className="Inputs">
-          <button onClick={handleClickWeb}>Load from Google Drive</button>
-          <CSVReader
-            onDrop={handleOnDrop}
-            onError={handleOnError}
-            addRemoveButton
-            onRemoveFile={handleOnRemoveFile}
-          >
-            <span>Drop CSV file here or click to upload.</span>
-          </CSVReader>
-        </div>}
+        {!checked && (
+          <div className="Inputs">
+            <button onClick={handleClickWeb}>Load from Google Drive</button>
+            <CSVReader
+              onDrop={handleOnDrop}
+              onError={handleOnError}
+              addRemoveButton
+              onRemoveFile={handleOnRemoveFile}
+            >
+              <span>Drop CSV file here or click to upload.</span>
+            </CSVReader>
+          </div>
+        )}
         <div className="Meme">
           {!checked ? (
             <div>
               <img src={logo} alt="logo" />
               <p>Vai um Gundanzim ai Fei? Carrega o Arquivo CSV ae!</p>
             </div>
-          ) : <p>IXQUECE</p>}
+          ) : (
+            <p>IXQUECE</p>
+          )}
           {checked && (
             <div>
               <img src={imgUrl[randomImg]} alt="meme" />
             </div>
           )}
-          <button disabled={!data.length} onClick={handleClick} className={!data.length || checked ? "displayButtonFalse" : "displayButtonTrue"}>
+          <button
+            disabled={!data.length}
+            onClick={handleClick}
+            className={
+              !data.length || checked
+                ? 'displayButtonFalse'
+                : 'displayButtonTrue'
+            }
+          >
             Agora Clica Aqui!
           </button>
         </div>

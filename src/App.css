@@ -94,6 +94,10 @@ img {
   background-color: #ff9f1c;
 }
 
+.pink {
+  background-color: #a31e86;
+}
+
 .displayButtonFalse {
   display : none;
 }

@@ -15,6 +15,7 @@ function CSVReader2() {
   const [team1, setTeam1] = useState([]);
   const [team2, setTeam2] = useState([]);
   const [team3, setTeam3] = useState([]);
+  const [team4, setTeam4] = useState([]);
 
   function handleClickWeb() {
     readRemoteFile(
@@ -56,7 +57,11 @@ function CSVReader2() {
     );
     setRandomImg(getRandomArbitrary(0, imgUrl.length));
     setSortedData(data);
-    algoritmoGuloso(sortedData);
+    if (sortedData.length === 25) {
+      algoritmoGuloso(sortedData);
+    } else if (sortedData.length > 25) {
+      algoritmoGuloso2(sortedData);
+    }
   }, [data, sortedData, overall]);
 
   function getRandomArbitrary(min, max) {
@@ -68,26 +73,50 @@ function CSVReader2() {
     let jogadoresY = [];
     let jogadoresZ = [];
 
-    if (sortedData.length === 25) {
-      let k = 0;
-      for (let i = 0; i < 24; i += 3) {
-        if (k % 2 === 0) {
-          jogadoresX.push(sortedData[i]);
-          jogadoresY.push(sortedData[i + 1]);
-          jogadoresZ.push(sortedData[i + 2]);
-        } else {
-          jogadoresX.push(sortedData[i + 2]);
-          jogadoresY.push(sortedData[i + 1]);
-          jogadoresZ.push(sortedData[i]);
-        }
-        k++;
+    let k = 0;
+    for (let i = 0; i < 24; i += 3) {
+      if (k % 2 === 0) {
+        jogadoresX.push(sortedData[i]);
+        jogadoresY.push(sortedData[i + 1]);
+        jogadoresZ.push(sortedData[i + 2]);
+      } else {
+        jogadoresX.push(sortedData[i + 2]);
+        jogadoresY.push(sortedData[i + 1]);
+        jogadoresZ.push(sortedData[i]);
       }
+      k++;
       setTeam1(jogadoresX);
       setTeam2(jogadoresY);
       setTeam3(jogadoresZ);
     }
   }
+  function algoritmoGuloso2(sortedData) {
+    let jogadoresX = [];
+    let jogadoresY = [];
+    let jogadoresZ = [];
+    let jogadoresN = [];
 
+    let j = 0;
+    for (let i = 0; i < 32; i += 4) {
+      if (j % 2 === 0) {
+        jogadoresX.push(sortedData[i]);
+        jogadoresY.push(sortedData[i + 1]);
+        jogadoresZ.push(sortedData[i + 2]);
+        jogadoresN.push(sortedData[i + 3]);
+      } else {
+        jogadoresX.push(sortedData[i + 3]);
+        jogadoresY.push(sortedData[i + 2]);
+        jogadoresZ.push(sortedData[i + 1]);
+        jogadoresN.push(sortedData[i]);
+      }
+      j++;
+    }
+    setTeam1(jogadoresX);
+    setTeam2(jogadoresY);
+    setTeam3(jogadoresZ);
+    setTeam4(jogadoresN);
+  }
+  console.log(team4);
   return (
     <>
       <div className="App">
@@ -156,6 +185,16 @@ function CSVReader2() {
                 </p>
               ))}
             </div>
+            {team4.length ? (
+              <div className="Team">
+                <p className="titulo">Time 4</p>
+                {team4.map((element, index) => (
+                  <p className="LoL green" key={index}>
+                    {element[name]}
+                  </p>
+                ))}
+              </div>
+            ) : null}
           </div>
         )}
       </div>

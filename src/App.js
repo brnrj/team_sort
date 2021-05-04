@@ -60,7 +60,7 @@ function CSVReader2() {
     if (sortedData.length === 25) {
       algoritmoGuloso(sortedData);
     } else if (sortedData.length > 25) {
-      algoritmoGuloso2(sortedData);
+      algoritmoGuloso2(sortedData.filter((element) => element.length > 1 ));
     }
   }, [data, sortedData, overall]);
 
@@ -95,7 +95,7 @@ function CSVReader2() {
     let jogadoresY = [];
     let jogadoresZ = [];
     let jogadoresN = [];
-
+    console.log(sortedData)
     let j = 0;
     for (let i = 0; i < 32; i += 4) {
       if (j % 2 === 0) {
@@ -111,12 +111,15 @@ function CSVReader2() {
       }
       j++;
     }
+      console.log(jogadoresX)
+      console.log(jogadoresY)
+      console.log(jogadoresZ)
+      console.log(jogadoresN)
     setTeam1(jogadoresX);
     setTeam2(jogadoresY);
     setTeam3(jogadoresZ);
     setTeam4(jogadoresN);
   }
-  console.log(team4);
   return (
     <>
       <div className="App">

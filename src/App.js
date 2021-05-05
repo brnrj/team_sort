@@ -12,10 +12,7 @@ function CSVReader2() {
   const [data, setData] = useState([]);
   const [sortedData, setSortedData] = useState([]);
   const [checked, setChecked] = useState(false);
-  const [team1, setTeam1] = useState([]);
-  const [team2, setTeam2] = useState([]);
-  const [team3, setTeam3] = useState([]);
-  const [team4, setTeam4] = useState([]);
+  const [teamX, setTeamX] = useState([]);
 
   function handleClickWeb() {
     readRemoteFile(
@@ -60,7 +57,7 @@ function CSVReader2() {
     if (sortedData.length === 25) {
       algoritmoGuloso(sortedData);
     } else if (sortedData.length > 25) {
-      algoritmoGuloso2(sortedData.filter((element) => element.length > 1 ));
+      algoritmoGuloso2(sortedData.filter((element) => element.length > 1));
     }
   }, [data, sortedData, overall]);
 
@@ -85,17 +82,15 @@ function CSVReader2() {
         jogadoresZ.push(sortedData[i]);
       }
       k++;
-      setTeam1(jogadoresX);
-      setTeam2(jogadoresY);
-      setTeam3(jogadoresZ);
     }
+    setTeamX([[...jogadoresX], [...jogadoresY], [...jogadoresZ]]);
   }
   function algoritmoGuloso2(sortedData) {
     let jogadoresX = [];
     let jogadoresY = [];
     let jogadoresZ = [];
     let jogadoresN = [];
-    console.log(sortedData)
+
     let j = 0;
     for (let i = 0; i < 32; i += 4) {
       if (j % 2 === 0) {
@@ -111,14 +106,12 @@ function CSVReader2() {
       }
       j++;
     }
-      console.log(jogadoresX)
-      console.log(jogadoresY)
-      console.log(jogadoresZ)
-      console.log(jogadoresN)
-    setTeam1(jogadoresX);
-    setTeam2(jogadoresY);
-    setTeam3(jogadoresZ);
-    setTeam4(jogadoresN);
+    setTeamX([
+      [...jogadoresX],
+      [...jogadoresY],
+      [...jogadoresZ],
+      [...jogadoresN],
+    ]);
   }
   return (
     <>
@@ -162,44 +155,30 @@ function CSVReader2() {
             Agora Clica Aqui!
           </button>
         </div>
-        {checked && data.length && (
-          <div className="Main-Team">
-            <div className="Team">
-              <p className="titulo">Time 1</p>
-              {team1.map((element, index) => (
-                <p className="LoL blue" key={index}>
-                  {element[name]}
-                </p>
-              ))}
-            </div>
-            <div className="Team">
-              <p className="titulo">Time 2</p>
-              {team2.map((element, index) => (
-                <p className="LoL red" key={index}>
-                  {element[name]}
-                </p>
-              ))}
-            </div>
-            <div className="Team">
-              <p className="titulo">Time 3</p>
-              {team3.map((element, index) => (
-                <p className="LoL green" key={index}>
-                  {element[name]}
-                </p>
-              ))}
-            </div>
-            {team4.length ? (
-              <div className="Team">
-                <p className="titulo">Time 4</p>
-                {team4.map((element, index) => (
-                  <p className="LoL green" key={index}>
-                    {element[name]}
+        <div className="Main-Team">
+          {checked &&
+            teamX.map((element, index) => (
+              <div key={index} className="Team">
+                <p className="titulo">{`Time${index + 1}`}</p>
+                {element.map((value, i) => (
+                  <p
+                    key={i}
+                    className={
+                      index === 0
+                        ? 'LoL blue'
+                        : index === 1
+                        ? 'LoL red'
+                        : index === 2
+                        ? 'LoL green'
+                        : 'LoL pink'
+                    }
+                  >
+                    {value[name]}
                   </p>
                 ))}
               </div>
-            ) : null}
-          </div>
-        )}
+            ))}
+        </div>
       </div>
     </>
   );

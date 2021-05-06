@@ -62,8 +62,7 @@ function CSVReader2() {
     // for(let i = 0; i < 24 ; i++){
     //   times[i % 3].push(sortedData[i])
     // }
-
-    if(nrTeams==3){
+    if(nrTeams==='3'){
       let k = 0;
       for (let i = 0; i < 24; i += 3) {
         if (k % 2 === 0) {
@@ -79,7 +78,7 @@ function CSVReader2() {
       }
     }
 
-    if(nrTeams==4){
+    if(nrTeams==='4'){
       let k = 0;
       for (let i = 0; i < 32; i += 4) {
         if (k % 2 === 0) {

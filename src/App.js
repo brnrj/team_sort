@@ -111,18 +111,7 @@ function CSVReader2() {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  function getAllPlayers(data) {
-    let allplayers=[]
-    for (let i = 0; i <= data.length; i++) {
-      if(data[i]!=null){ 
-        if(data[i][confirmado]==='sim'){
-          
-          allplayers.push(data[i])
-        }
-      }
-    }
-    return allplayers;
-  }
+  
 
   function getPlayersPerTeam(data) {
     for (let i = 0; i <= data.length; i++) {
@@ -144,31 +133,47 @@ function CSVReader2() {
     }
   }
 
-  function sortRandomly(data){
-    if(data){
-      data.sort((a, b) =>
-      a[overall] > b[overall]
-        ? 1
-        : b[overall] > a[overall]
-        ? -1
-        : Math.floor(Math.random() * 2) || -1
-      );
-    }
-    return data;
-  }
+
 
   useEffect(() => {
+    function getAllPlayers(data) {
+      let allplayers=[]
+      for (let i = 0; i <= data.length; i++) {
+        if(data[i]!=null){ 
+          if(data[i][confirmado]==='sim'){
+            
+            allplayers.push(data[i])
+          }
+        }
+      }
+      return allplayers;
+    }
+
+    function sortRandomly(data){
+      if(data){
+        data.sort((a, b) =>
+        a[overall] > b[overall]
+          ? 1
+          : b[overall] > a[overall]
+          ? -1
+          : Math.floor(Math.random() * 2) || -1
+        );
+      }
+      return data;
+    }
+
     setRandomImg(getRandomArbitrary(0, imgUrl.length));
     let playingPlayers = getAllPlayers(data);
     let nrplayersPerTeam = getPlayersPerTeam(data)
     let nrTeams = getNumberOfTeams(data);
 
-    console.log("Number of players = " + nrplayersPerTeam)
+    console.log("Number of players per team= " + nrplayersPerTeam)
     console.log("Number of teams = " + nrTeams);
-    playingPlayers = sortRandomly(playingPlayers);
+    console.log("Number of players on list = " + playingPlayers.length);
+    playingPlayers=sortRandomly(playingPlayers);
 
     algoritmoGuloso(playingPlayers,nrplayersPerTeam,nrTeams);
-  }, [data, overall]);
+  }, [data, overall,confirmado]);
   
   return (
     <>

@@ -16,11 +16,18 @@ function CSVReader2() {
     handleOnError,
     handleOnRemoveFile,
     imgUrl,
+    handleChange,
   } = useContext(Context);
 
   return (
     <>
       <div className="App">
+        <label htmlFor="">Jogadores:
+          <input name="input1" onChange={handleChange} type="number" />
+        </label>
+        <label htmlFor="">Times:
+          <input name="input2" type="number" onChange={handleChange} />
+        </label>
         {!checked && (
           <div className="Inputs">
             <button onClick={handleClickWeb}>Load from Google Drive</button>
@@ -65,22 +72,24 @@ function CSVReader2() {
             teamX.map((element, index) => (
               <div key={index} className="Team">
                 <p className="titulo">{`Time${index + 1}`}</p>
-                {element.map((value, i) => (
-                  <p
-                    key={i}
-                    className={
-                      index === 0
-                        ? 'LoL blue'
-                        : index === 1
-                        ? 'LoL red'
-                        : index === 2
-                        ? 'LoL green'
-                        : 'LoL pink'
-                    }
-                  >
-                    {value[0]}
-                  </p>
-                ))}
+                {element.map((value, i) =>
+                  value !== undefined ? (
+                    <p
+                      key={i}
+                      className={
+                        index === 0
+                          ? 'LoL blue'
+                          : index === 1
+                          ? 'LoL red'
+                          : index === 2
+                          ? 'LoL green'
+                          : 'LoL pink'
+                      }
+                    >
+                      {value[0]}
+                    </p>
+                  ) : null
+                )}
               </div>
             ))}
         </div>

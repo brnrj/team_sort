@@ -11,6 +11,12 @@ function Provider({ children }) {
   const [sortedData, setSortedData] = useState([]);
   const [checked, setChecked] = useState(false);
   const [teamX, setTeamX] = useState([]);
+  const [input, setInput] = useState()
+  const [input2, setInput2] = useState()
+
+  function handleChange({target}) {
+    target.name === 'input1' ? setInput(target.value) : setInput2(target.value)
+  }
 
   function handleClickWeb() {
     readRemoteFile(
@@ -69,7 +75,7 @@ function Provider({ children }) {
     let jogadoresZ = [];
 
     let k = 0;
-    for (let i = 0; i < 24; i += 3) {
+    for (let i = 0; i < sortedData.length; i += 3) {
       if (k % 2 === 0) {
         jogadoresX.push(sortedData[i]);
         jogadoresY.push(sortedData[i + 1]);
@@ -90,7 +96,7 @@ function Provider({ children }) {
     let jogadoresN = [];
 
     let j = 0;
-    for (let i = 0; i < 32; i += 4) {
+    for (let i = 0; i < sortedData.length; i += 4) {
       if (j % 2 === 0) {
         jogadoresX.push(sortedData[i]);
         jogadoresY.push(sortedData[i + 1]);
@@ -130,6 +136,10 @@ function Provider({ children }) {
     handleOnError,
     handleOnRemoveFile,
     imgUrl,
+    input,
+    setInput,
+    input2,
+    handleChange
   };
   return <Context.Provider value={context}>{children}</Context.Provider>;
 }

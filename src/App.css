@@ -94,6 +94,11 @@ img {
   background-color: #ff9f1c;
 }
 
+.test {
+  color:white;
+  background-color: #6e0000;
+}
+
 .displayButtonFalse {
   display : none;
 }

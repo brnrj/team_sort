@@ -13,11 +13,7 @@ function CSVReader2() {
   const [randomImg, setRandomImg] = useState();
   const [data, setData] = useState([]);
   const [checked, setChecked] = useState(false);
-  const [team1, setTeam1] = useState([]);
-  const [team2, setTeam2] = useState([]);
-  const [team3, setTeam3] = useState([]);
-  const [team4, setTeam4] = useState([]);
-
+  const [teams, setTeams] = useState([])
   function handleClickWeb() {
     readRemoteFile(
       'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoADoJc-w_dAjQ_GNlSX99KpDsdzYJ6Kau3OI50_f2CamLySulbEStphsrrvtiYns0Mk8aVlLyNSXl/pub?gid=238086313&single=true&output=csv',
@@ -54,57 +50,43 @@ function CSVReader2() {
     let time3 = [];
     let time4 = [];
 
-    const obj = {
-      jogador: sortedData,
-    };
-
-    //let times = [time1, time2, time3]
-    // for(let i = 0; i < 24 ; i++){
-    //   times[i % 3].push(sortedData[i])
-    // }
     if(nrTeams==='3'){
       let k = 0;
       for (let i = 0; i < 24; i += 3) {
         if (k % 2 === 0) {
-          time1.push(obj.jogador[i]);
-          time2.push(obj.jogador[i + 1]);
-          time3.push(obj.jogador[i + 2]);
+          time1.push(sortedData[i]);
+          time2.push(sortedData[i + 1]);
+          time3.push(sortedData[i + 2]);
         } else {
-          time1.push(obj.jogador[i + 2]);
-          time2.push(obj.jogador[i + 1]);
-          time3.push(obj.jogador[i]);
+          time1.push(sortedData[i + 2]);
+          time2.push(sortedData[i + 1]);
+          time3.push(sortedData[i]);
         }
         k++;
       }
+      setTeams([[...time1], [...time2], [...time3]])
     }
 
     if(nrTeams==='4'){
       let k = 0;
       for (let i = 0; i < 32; i += 4) {
         if (k % 2 === 0) {
-          time1.push(obj.jogador[i]);
-          time2.push(obj.jogador[i + 1]);
-          time3.push(obj.jogador[i + 2]);
-          time4.push(obj.jogador[i + 3]);
+          time1.push(sortedData[i]);
+          time2.push(sortedData[i + 1]);
+          time3.push(sortedData[i + 2]);
+          time4.push(sortedData[i + 3]);
         } else {
-          time1.push(obj.jogador[i + 3]);
-          time2.push(obj.jogador[i + 2]);
-          time3.push(obj.jogador[i + 1]);
-          time4.push(obj.jogador[i]);
+          time1.push(sortedData[i + 3]);
+          time2.push(sortedData[i + 2]);
+          time3.push(sortedData[i + 1]);
+          time4.push(sortedData[i]);
         }
         k++;
       }
-
-      setTeam4(time4);
+      setTeams([[...time1], [...time2], [...time3], [...time4]])
     }
-    setTeam1(time1);
-    setTeam2(time2);
-    setTeam3(time3);
-    // console.log(time1);
-    // console.log(time2);
-    // console.log(time3);
-    // console.log(time4);
   }
+  console.log(teams)
 
   function getRandomArbitrary(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
@@ -131,8 +113,6 @@ function CSVReader2() {
       }
     }
   }
-
-
 
   useEffect(() => {
     function getAllPlayers(data) {
@@ -204,42 +184,32 @@ function CSVReader2() {
             Agora Clica Aqui!
           </button>
         </div>
-        {checked && data.length && (
-          <div className="Main-Team">
-            <div className="Team">
-              <p className="titulo">Time 1</p>
-              {team1.map((element, index) => (
-                <p className="LoL blue" key={index}>
-                  {element[posicao] + " - " + element[name]}
-                </p>
-              ))}
-            </div>
-            <div className="Team">
-              <p className="titulo">Time 2</p>
-              {team2.map((element, index) => (
-                <p className="LoL red" key={index}>
-                  {element[posicao] + " - " + element[name]}
-                </p>
-              ))}
-            </div>
-            <div className="Team">
-              <p className="titulo">Time 3</p>
-              {team3.map((element, index) => (
-                <p className="LoL green" key={index}>
-                  {element[posicao] + " - " + element[name]}
-                </p>
-              ))}
-            </div>
-            <div className="Team">
-              <p className="titulo">Time 4</p>
-              {team4.map((element, index) => (
-                <p className="LoL test" key={index}>
-                  {element[posicao] + " - " + element[name]}
-                </p>
-              ))}
-            </div>
-          </div>
-        )}
+        <div className="Main-Team">
+          {checked &&
+            teams.map((element, index) => (
+              <div key={index} className="Team">
+                <p className="titulo">{`Time${index + 1}`}</p>
+                {element.map((value, i) =>
+                  value !== undefined ? (
+                    <p
+                      key={i}
+                      className={
+                        index === 0
+                          ? 'LoL blue'
+                          : index === 1
+                          ? 'LoL red'
+                          : index === 2
+                          ? 'LoL green'
+                          : 'LoL pink'
+                      }
+                    >
+                      {`${value[posicao]} - ${value[name]}`}
+                    </p>
+                  ) : null
+                )}
+              </div>
+            ))}
+        </div>
       </div>
     </>
   );

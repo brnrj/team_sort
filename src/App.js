@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { CSVReader } from 'react-papaparse';
 import './App.css';
-import logo from './images/logo.png';
 import imgUrl from './dataImages';
 import Context from './context/Context';
 
@@ -25,8 +24,6 @@ function App() {
         <div className="Meme">
           {!checked ? (
             <div className="Logo">
-              <h4>Random Team Generator</h4>
-              <img src={logo} alt="logo" />
             </div>
           ) : (
             <p>Boa Sorte a Todos!</p>

@@ -40,7 +40,7 @@ img {
   margin-top: 25px;
   display: flex;
   justify-content: space-between;
-  background-image: url('https://www.almanaquedamulher.com/wp-content/uploads/2015/08/Rio-de-janeiro.png');
+  background-image: url('https://github.com/brnrj/team_sort/blob/feat-revamp-ui/src/images/main.png');
   width: 350px;
   height: 400px;
   border-radius: 10px;
@@ -48,8 +48,6 @@ img {
 }
 
 .Logo h4 {
-  left: 0;
-  position: absolute;
   background-color: transparent;
   margin: 0;
   margin-top: 15px;
@@ -60,8 +58,6 @@ img {
 }
 
 .Logo img {
-  position: absolute;
-  right: 0;
   background-color: transparent;
   height: 80px;
   width: 80px;

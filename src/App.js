@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CSVReader } from 'react-papaparse';
 import './App.css';
-import logo from './images/logo.jpeg';
+import logo from './images/logo.png';
 import imgUrl from './dataImages';
 import Context from './context/Context';
 
@@ -22,8 +22,24 @@ function App() {
   return (
     <>
       <div className="App">
-        {!checked && (
+        <div className="Meme">
+          {!checked ? (
+            <div className="Logo">
+              <h4>Random Team Generator</h4>
+              <img src={logo} alt="logo" />
+            </div>
+          ) : (
+            <p>Boa Sorte a Todos!</p>
+          )}
+          {checked && (
+            <div className="MemeCard">
+              <img src={imgUrl[randomImg]} alt="meme" />
+            </div>
+          )}
+        </div>
+        {!checked && !data.length ? (
           <div className="Inputs">
+            <p>Carregue o Arquivo CSV</p>
             <button onClick={handleClickWeb}>Load from Google Drive</button>
             <CSVReader
               onDrop={handleOnDrop}
@@ -34,33 +50,19 @@ function App() {
               <span>Drop CSV file here or click to upload.</span>
             </CSVReader>
           </div>
-        )}
-        <div className="Meme">
-          {!checked ? (
-            <div>
-              <img src={logo} alt="logo" />
-              <p>Vai um Gundanzim ai Fei? Carrega o Arquivo CSV ae!</p>
-            </div>
-          ) : (
-            <p>IXQUECE</p>
-          )}
-          {checked && (
-            <div>
-              <img src={imgUrl[randomImg]} alt="meme" />
-            </div>
-          )}
+        ) : <div className="Inputs">
           <button
-            disabled={!data.length}
-            onClick={handleClick}
-            className={
-              !data.length || checked
-                ? 'displayButtonFalse'
-                : 'displayButtonTrue'
-            }
-          >
-            Agora Clica Aqui!
-          </button>
-        </div>
+        disabled={!data.length}
+        onClick={handleClick}
+        className={
+          !data.length || checked
+            ? 'displayButtonFalse'
+            : 'displayButtonTrue'
+        }
+      >
+        Agora Clica Aqui!
+      </button>
+        </div>}
         <div className="Main-Team">
           {checked &&
             teams.map((element, index) => (

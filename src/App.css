@@ -1,33 +1,11 @@
 * {
-  background-color: #011627;
-  color: white;
+  background-color: #202020;
+  color: #ffd100;
 }
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -36,18 +14,53 @@
 
 .Inputs {
   display: flex;
-  justify-content: center;
-  padding-top: 50px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
 }
 
 .Inputs button {
   margin: 10px;
   border-radius: 10px;
+  height: 30px;
+  background-color: #333533;
+}
+
+.Inputs p {
+  font-size: x-large;
 }
 
 img {
   height: 200px;
   width: 200px;
+}
+
+.Logo {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  background-image: url('https://www.almanaquedamulher.com/wp-content/uploads/2015/08/Rio-de-janeiro.png');
+  width: 350px;
+  height: 400px;
+  border-radius: 10px;
+}
+
+.Logo h4 {
+  background-color: transparent;
+  margin: 0;
+  margin-top: 20px;
+  margin-left: 3px;
+  border: 0;
+  padding: 0;
+  width: 220px;
+  opacity: 90%;
+}
+
+.Logo img {
+  background-color: transparent;
+  height: 80px;
+  width: 80px;
+  opacity: 85%;
 }
 
 .LoL {
@@ -62,17 +75,19 @@ img {
 }
 
 .Main-Team {
-  padding-top: 25px;
   display: flex;
   justify-content: center;
 }
 
 .Meme {
-  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   font-size: xx-large;
 }
-.Meme p {
-  padding-right: 10px;
+
+.MemeCard img {
+  border-radius: 10px;
 }
 
 .Team {

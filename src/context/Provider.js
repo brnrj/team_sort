@@ -141,9 +141,9 @@ function Provider({ children }) {
     let nrplayersPerTeam = getPlayersPerTeam(data);
     let nrTeams = getNumberOfTeams(data);
 
-    // console.log('Number of players per team= ' + nrplayersPerTeam);
-    // console.log('Number of teams = ' + nrTeams);
-    // console.log('Number of players on list = ' + playingPlayers.length);
+    console.log('Number of players per team= ' + nrplayersPerTeam);
+    console.log('Number of teams = ' + nrTeams);
+    console.log('Number of players on list = ' + playingPlayers.length);
     playingPlayers = sortRandomly(playingPlayers);
 
     algoritmoGuloso(playingPlayers, nrplayersPerTeam, nrTeams);

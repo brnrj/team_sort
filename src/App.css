@@ -1,16 +1,16 @@
 * {
-  background-color: #202020;
-  color: #ffd100;
+  background-color: #afafaf;
+  color: #202020;
+  box-sizing: border-box;
 }
 
 .App {
-  text-align: center;
   display: flex;
   flex-direction: column;
-}
-
-.App-link {
-  color: #61dafb;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
 }
 
 .Inputs {
@@ -21,10 +21,16 @@
 }
 
 .Inputs button {
-  margin: 10px;
+  margin: 5px;
   border-radius: 10px;
   height: 30px;
-  background-color: #333533;
+  background-color: #afafaf;
+  cursor: pointer;
+  border: 2px white solid;
+}
+
+.Inputs button:active {
+  transform: scale(0.95);
 }
 
 .Inputs p {
@@ -64,20 +70,33 @@ img {
   opacity: 85%;
 }
 
-.LoL {
-  color: black;
-  background-color: black;
-  border-radius: 10px;
+.Main-Team {
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
+
 .titulo {
+  display: flex;
+  justify-content: center;
   color: white;
   background-color: black;
   border-radius: 10px;
+  width: 125px;
 }
 
-.Main-Team {
+.LoL {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  height: 55px;
+  width: 125px;
+  margin: 5px 0;
 }
 
 .Meme {
@@ -87,31 +106,42 @@ img {
   font-size: xx-large;
 }
 
+.Meme p {
+  margin: 16px
+}
+
 .MemeCard img {
   border-radius: 10px;
 }
 
+.player_position {
+  background-color: transparent;
+  color: white;
+}
+
 .Team {
-  width: 200px;
-  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 5px;
-  border-radius: 10px;
+  text-align: center;
 }
 
 .red {
-  background-color: #e71d36;
+  background-color: #960e0e;
 }
 
 .blue {
-  background-color: #2ec4b6;
+  background-color: #191e87;
 }
 
 .green {
-  background-color: #ff9f1c;
+  background-color: #1a390f;
 }
 
 .pink {
-  background-color: orangered;
+  background-color: #202020;
 }
 
 .test {
@@ -126,4 +156,18 @@ img {
 .displayButtonTrue {
   border-radius: 10px;
   height: 50px;
+}
+
+.golden_border {
+  border: 1px white solid;
+}
+
+@media only screen and (max-width: 480px) {
+  .titulo {
+    width: 75px;
+  }
+
+  .LoL {
+    width: 75px;
+  }
 }

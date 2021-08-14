@@ -30,7 +30,7 @@ function App() {
           )}
           {checked && (
             <div className="MemeCard">
-              <img src={imgUrl[randomImg]} alt="meme" />
+              <img className="golden_border" src={imgUrl[randomImg]} alt="meme" />
             </div>
           )}
         </div>
@@ -57,29 +57,30 @@ function App() {
             : 'displayButtonTrue'
         }
       >
-        Agora Clica Aqui!
+        #### Sortear Times ####
       </button>
         </div>}
         <div className="Main-Team">
           {checked &&
             teams.map((element, index) => (
               <div key={index} className="Team">
-                <p className="titulo">{`Time${index + 1}`}</p>
+                <p className="titulo golden_border">{`Time ${index + 1}`}</p>
                 {element.map((value, i) =>
                   value !== undefined ? (
                     <p
                       key={i}
-                      className={
+                      className={`golden_border ${
                         index === 0
                           ? 'LoL blue'
                           : index === 1
                           ? 'LoL red'
                           : index === 2
                           ? 'LoL green'
-                          : 'LoL pink'
+                          : 'LoL pink'}`
                       }
                     >
-                      {`${value[posicao]} - ${value[name]}`}
+                      <span className="player_position">{value[posicao]}</span>
+                      {value[name]}
                     </p>
                   ) : null
                 )}

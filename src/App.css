@@ -14,19 +14,38 @@
 }
 
 .Inputs {
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15px;
+  width: 20vw;
+  height: 100vw;
+}
+
+.inputs-buttons {
+  display: flex;
+  width: 20vw;
+  justify-content: center;
+}
+
+.upload-button {
+  font-size: medium;
+  text-align: center;
+  font-weight: 500;
+}
+
+.sort-button {
+  width: 100%;
+  height: 100%;
 }
 
 .Inputs button {
-  margin: 5px;
   border-radius: 10px;
-  height: 30px;
+  width: 100%;
   background-color: #afafaf;
   cursor: pointer;
-  border: 2px white solid;
+  border: 1px white solid;
+  font-size: large;
 }
 
 .Inputs button:active {
@@ -163,6 +182,23 @@ img {
 }
 
 @media only screen and (max-width: 480px) {
+  .inputs-buttons {
+    width: 60vw;
+  }
+
+  .Inputs {
+    margin-top: 40px;
+    width: 80vw;
+  }
+
+  .Inputs button {
+    font-size: small;
+  }
+
+  .upload-button {
+    font-size: small;
+  }
+
   .titulo {
     width: 75px;
   }

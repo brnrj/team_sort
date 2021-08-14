@@ -37,15 +37,17 @@ function App() {
         {!checked && !data.length ? (
           <div className="Inputs">
             <p>Carregue o Arquivo CSV</p>
-            <button onClick={handleClickWeb}>Load from Google Drive</button>
-            <CSVReader
-              onDrop={handleOnDrop}
-              onError={handleOnError}
-              addRemoveButton
-              onRemoveFile={handleOnRemoveFile}
-            >
-              <span>Drop CSV file here or click to upload.</span>
-            </CSVReader>
+            <div className="inputs-buttons">
+              <button onClick={handleClickWeb}>Load from Google Drive</button>
+              <CSVReader
+                onDrop={handleOnDrop}
+                onError={handleOnError}
+                addRemoveButton
+                onRemoveFile={handleOnRemoveFile}
+              >
+                <span className="upload-button">Drop CSV file here or click to upload.</span>
+              </CSVReader>
+            </div>
           </div>
         ) : <div className="Inputs">
           <button

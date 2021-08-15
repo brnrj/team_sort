@@ -73,12 +73,12 @@ function App() {
                       key={i}
                       className={`golden_border ${
                         index === 0
-                          ? 'LoL blue'
+                          ? 'player-info blue'
                           : index === 1
-                          ? 'LoL red'
+                          ? 'player-info red'
                           : index === 2
-                          ? 'LoL green'
-                          : 'LoL pink'}`
+                          ? 'player-info green'
+                          : 'player-info pink'}`
                       }
                     >
                       <span className="player_position">{value[posicao]}</span>

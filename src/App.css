@@ -105,7 +105,7 @@ img {
   width: 125px;
 }
 
-.LoL {
+.player-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -203,7 +203,7 @@ img {
     width: 75px;
   }
 
-  .LoL {
+  .player-info {
     width: 75px;
   }
 }

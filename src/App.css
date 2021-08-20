@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@100&display=swap');
+
 * {
   background-color: #afafaf;
   color: #202020;
@@ -101,7 +103,7 @@ img {
   justify-content: center;
   color: white;
   background-color: black;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 125px;
 }
 
@@ -116,6 +118,7 @@ img {
   height: 55px;
   width: 125px;
   margin: 5px 0;
+  font-size: 13px;
 }
 
 .Meme {
@@ -136,6 +139,9 @@ img {
 .player_position {
   background-color: transparent;
   color: white;
+  font-size: small;
+  font-family: 'Exo', sans-serif;
+  font-weight: 700;
 }
 
 .Team {
@@ -205,5 +211,16 @@ img {
 
   .player-info {
     width: 75px;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .titulo {
+    width: 70px;
+  }
+
+  .player-info {
+    width: 60px;
+    font-size: small;
   }
 }

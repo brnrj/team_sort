@@ -30,22 +30,24 @@ function App() {
           )}
           {checked && (
             <div className="MemeCard">
-              <img src={imgUrl[randomImg]} alt="meme" />
+              <img className="golden_border" src={imgUrl[randomImg]} alt="meme" />
             </div>
           )}
         </div>
         {!checked && !data.length ? (
           <div className="Inputs">
             <p>Carregue o Arquivo CSV</p>
-            <button onClick={handleClickWeb}>Load from Google Drive</button>
-            <CSVReader
-              onDrop={handleOnDrop}
-              onError={handleOnError}
-              addRemoveButton
-              onRemoveFile={handleOnRemoveFile}
-            >
-              <span>Drop CSV file here or click to upload.</span>
-            </CSVReader>
+            <div className="inputs-buttons">
+              <button onClick={handleClickWeb}>Load from Google Drive</button>
+              <CSVReader
+                onDrop={handleOnDrop}
+                onError={handleOnError}
+                addRemoveButton
+                onRemoveFile={handleOnRemoveFile}
+              >
+                <span className="upload-button">Drop CSV file here or click to upload.</span>
+              </CSVReader>
+            </div>
           </div>
         ) : <div className="Inputs">
           <button
@@ -57,29 +59,30 @@ function App() {
             : 'displayButtonTrue'
         }
       >
-        Agora Clica Aqui!
+        #### Sortear Times ####
       </button>
         </div>}
         <div className="Main-Team">
           {checked &&
             teams.map((element, index) => (
               <div key={index} className="Team">
-                <p className="titulo">{`Time${index + 1}`}</p>
+                <p className="titulo golden_border">{`Time ${index + 1}`}</p>
                 {element.map((value, i) =>
                   value !== undefined ? (
                     <p
                       key={i}
-                      className={
+                      className={`golden_border ${
                         index === 0
-                          ? 'LoL blue'
+                          ? 'player-info blue'
                           : index === 1
-                          ? 'LoL red'
+                          ? 'player-info red'
                           : index === 2
-                          ? 'LoL green'
-                          : 'LoL pink'
+                          ? 'player-info green'
+                          : 'player-info pink'}`
                       }
                     >
-                      {`${value[posicao]} - ${value[name]}`}
+                      <span className="player_position">{value[posicao]}</span>
+                      {value[name]}
                     </p>
                   ) : null
                 )}

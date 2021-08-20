@@ -1,30 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@100&display=swap');
+
 * {
-  background-color: #202020;
-  color: #ffd100;
+  background-color: #afafaf;
+  color: #202020;
+  box-sizing: border-box;
 }
 
 .App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.Inputs {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15px;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+}
+
+.Inputs {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20vw;
+  height: 100vw;
+}
+
+.inputs-buttons {
+  display: flex;
+  width: 20vw;
+  justify-content: center;
+}
+
+.upload-button {
+  font-size: medium;
+  text-align: center;
+  font-weight: 500;
+}
+
+.sort-button {
+  width: 100%;
+  height: 100%;
 }
 
 .Inputs button {
-  margin: 10px;
   border-radius: 10px;
-  height: 30px;
-  background-color: #333533;
+  width: 100%;
+  background-color: #afafaf;
+  cursor: pointer;
+  border: 1px white solid;
+  font-size: large;
+}
+
+.Inputs button:active {
+  transform: scale(0.95);
 }
 
 .Inputs p {
@@ -64,20 +91,34 @@ img {
   opacity: 85%;
 }
 
-.LoL {
-  color: black;
-  background-color: black;
-  border-radius: 10px;
+.Main-Team {
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
+
 .titulo {
+  display: flex;
+  justify-content: center;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  width: 125px;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
   background-color: black;
   border-radius: 10px;
-}
-
-.Main-Team {
-  display: flex;
-  justify-content: center;
+  height: 55px;
+  width: 125px;
+  margin: 5px 0;
+  font-size: 13px;
 }
 
 .Meme {
@@ -87,31 +128,45 @@ img {
   font-size: xx-large;
 }
 
+.Meme p {
+  margin: 16px
+}
+
 .MemeCard img {
   border-radius: 10px;
 }
 
+.player_position {
+  background-color: transparent;
+  color: white;
+  font-size: small;
+  font-family: 'Exo', sans-serif;
+  font-weight: 700;
+}
+
 .Team {
-  width: 200px;
-  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 5px;
-  border-radius: 10px;
+  text-align: center;
 }
 
 .red {
-  background-color: #e71d36;
+  background-color: #960e0e;
 }
 
 .blue {
-  background-color: #2ec4b6;
+  background-color: #191e87;
 }
 
 .green {
-  background-color: #ff9f1c;
+  background-color: #1a390f;
 }
 
 .pink {
-  background-color: orangered;
+  background-color: #202020;
 }
 
 .test {
@@ -126,4 +181,46 @@ img {
 .displayButtonTrue {
   border-radius: 10px;
   height: 50px;
+}
+
+.golden_border {
+  border: 1px white solid;
+}
+
+@media only screen and (max-width: 480px) {
+  .inputs-buttons {
+    width: 60vw;
+  }
+
+  .Inputs {
+    margin-top: 40px;
+    width: 80vw;
+  }
+
+  .Inputs button {
+    font-size: small;
+  }
+
+  .upload-button {
+    font-size: small;
+  }
+
+  .titulo {
+    width: 75px;
+  }
+
+  .player-info {
+    width: 75px;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .titulo {
+    width: 70px;
+  }
+
+  .player-info {
+    width: 60px;
+    font-size: small;
+  }
 }

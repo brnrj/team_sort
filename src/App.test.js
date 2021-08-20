@@ -31,6 +31,7 @@ test('Ao clicar em load from Google Drive o botão para o sorteio dos times deve
   userEvent.click(getByTestId('load-button'));
 
   const sortButton = await findByTestId('sort-button');
+  
   expect(sortButton).toBeTruthy();
 
   userEvent.click(getByTestId('sort-button'));

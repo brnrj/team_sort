@@ -21,12 +21,12 @@ function App() {
   return (
     <>
       <div className="App">
-        <div className="Meme">
+        <div data-testid="meme-image" className="Meme">
           {!checked ? (
-            <div className="Logo">
+            <div data-testid="logo-image" className="Logo">
             </div>
           ) : (
-            <p>Boa Sorte a Todos!</p>
+            <p data-testid="message">Boa Sorte a Todos!</p>
           )}
           {checked && (
             <div className="MemeCard">
@@ -36,9 +36,9 @@ function App() {
         </div>
         {!checked && !data.length ? (
           <div className="Inputs">
-            <p>Carregue o Arquivo CSV</p>
+            <p data-testid="warning">Carregue o Arquivo CSV</p>
             <div className="inputs-buttons">
-              <button onClick={handleClickWeb}>Load from Google Drive</button>
+              <button data-testid="load-button" onClick={handleClickWeb}>Load from Google Drive</button>
               <CSVReader
                 onDrop={handleOnDrop}
                 onError={handleOnError}
@@ -50,7 +50,7 @@ function App() {
             </div>
           </div>
         ) : <div className="Inputs">
-          <button
+          <button data-testid="sort-button"
         disabled={!data.length}
         onClick={handleClick}
         className={
@@ -62,7 +62,7 @@ function App() {
         #### Sortear Times ####
       </button>
         </div>}
-        <div className="Main-Team">
+        <div data-testid="teams" className="Main-Team">
           {checked &&
             teams.map((element, index) => (
               <div key={index} className="Team">

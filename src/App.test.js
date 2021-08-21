@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import Provider from './context/Provider';
 import App from './App';
 import userEvent from '@testing-library/user-event';
@@ -32,7 +32,7 @@ test('Ao clicar em load from Google Drive o botão para o sorteio dos times deve
 
   const sortButton = await findByTestId('sort-button');
   
-  expect(sortButton).toBeTruthy();
+  await waitFor(() => expect(sortButton).toBeTruthy());
 
   userEvent.click(getByTestId('sort-button'));
   

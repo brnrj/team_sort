@@ -1,6 +1,6 @@
 Sorteador de times FutQuinta.
 
-Aplicativo desenvolvido para sortear os times do Futebol de Quinta-feira.
+Aplicação desenvolvida para sortear os times do Futebol de Quinta-feira.
 
 Para iniciar a aplicação faça o clone do repositório e em seguida rode o comando npm install para instalar as dependências.
 

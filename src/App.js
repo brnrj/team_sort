@@ -25,11 +25,24 @@ function App() {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    let teamList=["","","",""];
+    for (const key in teams) {
+      if (Object.hasOwnProperty.call(teams, key)) {
+        const element = teams[key];
+        for (let index = 0; index < element.length; index++) {
+          const element2 = element[index];
+          if(element2!=undefined){
+            teamList[key]+= element2[0]+", " 
+          }
+        }
+      }
+    }
+
     var templateParams = {
-      team1: '123',
-      team2: 'abc',
-      team3: 'dsadsd',
-      team4: 'teaqwpeo'
+      team1: teamList[0],
+      team2: teamList[1],
+      team3: teamList[2],
+      team4: teamList[3]
     };
     emailjs.send('service_29m1yon', 'template_i32jkmf', templateParams, 'user_vTDPwdmxg7t4L1q1rYMIS')
     //emailjs.sendForm('service_29m1yon', 'template_i32jkmf', form.current, 'user_vTDPwdmxg7t4L1q1rYMIS')

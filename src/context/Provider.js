@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Context from './Context';
 import { readRemoteFile } from 'react-papaparse';
 import imgUrl from '../dataImages';
+import emailjs from 'emailjs-com'
+import apiKeys from '../mail'
 
 function Provider({ children }) {
   const [overall] = useState(5);
@@ -28,6 +30,7 @@ function Provider({ children }) {
 
   function handleClick() {
     setChecked(true);
+    sendMail();
   }
 
   function handleOnDrop(data) {
@@ -166,6 +169,17 @@ function Provider({ children }) {
     posicao,
   };
 
+  async function sendMail() {
+
+      emailjs.sendForm('gmail', apiKeys.TEMPLATE_ID,  "#formTeams", apiKeys.USER_ID)
+      .then(result => {
+      console.log('Message Sent, I\'ll get back to you shortly', result.text);
+      },
+      error => {
+      console.log( 'An error occured, Plese try again',error.text)
+      })
+      
+  }
   return <Context.Provider value={context}>{children}</Context.Provider>;
 }
 

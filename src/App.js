@@ -62,33 +62,35 @@ function App() {
         #### Sortear Times ####
       </button>
         </div>}
-        <div data-testid="teams" className="Main-Team">
-          {checked &&
-            teams.map((element, index) => (
-              <div key={index} className="Team">
-                <p className="titulo golden_border">{`Time ${index + 1}`}</p>
-                {element.map((value, i) =>
-                  value !== undefined ? (
-                    <p
-                      key={i}
-                      className={`golden_border ${
-                        index === 0
-                          ? 'player-info blue'
-                          : index === 1
-                          ? 'player-info red'
-                          : index === 2
-                          ? 'player-info green'
-                          : 'player-info pink'}`
-                      }
-                    >
-                      <span className="player_position">{value[posicao]}</span>
-                      {value[name]}
-                    </p>
-                  ) : null
-                )}
-              </div>
-            ))}
-        </div>
+        <form name="formTeams">
+          <div data-testid="teams" className="Main-Team">
+            {checked &&
+              teams.map((element, index) => (
+                <div key={index} className="Team">
+                  <p className="titulo golden_border">{`Time ${index + 1}`}</p>
+                  {element.map((value, i) =>
+                    value !== undefined ? (
+                      <p
+                        key={i}
+                        className={`golden_border ${
+                          index === 0
+                            ? 'player-info blue'
+                            : index === 1
+                            ? 'player-info red'
+                            : index === 2
+                            ? 'player-info green'
+                            : 'player-info pink'}`
+                        }
+                      >
+                        <span className="player_position">{value[posicao]}</span>
+                        {value[name]}
+                      </p>
+                    ) : null
+                  )}
+                </div>
+              ))}
+          </div>
+        </form>
       </div>
     </>
   );

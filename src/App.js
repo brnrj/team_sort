@@ -25,7 +25,14 @@ function App() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('gmail', 'template_i32jkmf', form.current, 'user_vTDPwdmxg7t4L1q1rYMIS')
+    var templateParams = {
+      team1: '123',
+      team2: 'abc',
+      team3: 'dsadsd',
+      team4: 'teaqwpeo'
+    };
+    emailjs.send('service_29m1yon', 'template_i32jkmf', templateParams, 'user_vTDPwdmxg7t4L1q1rYMIS')
+    //emailjs.sendForm('service_29m1yon', 'template_i32jkmf', form.current, 'user_vTDPwdmxg7t4L1q1rYMIS')
       .then((result) => {
           console.log(result.text);
       }, (error) => {
@@ -77,7 +84,14 @@ function App() {
         #### Sortear Times ####
       </button>
         </div>}
-        <form ref={form} onChange={sendEmail}>
+        <form ref={form} onSubmit={sendEmail}>
+          <label>Name</label>
+          <input type="text" name="user_name" />
+          <label>Email</label>
+          <input type="email" name="user_email" />
+          <label>Message</label>
+          <textarea name="message" />
+          <input type="submit" value="Send" />
           <div data-testid="teams" className="Main-Team">
             {checked &&
               teams.map((element, index) => (

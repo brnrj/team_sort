@@ -3,7 +3,7 @@ import { CSVReader } from 'react-papaparse';
 import './App.css';
 import imgUrl from './dataImages';
 import Context from './context/Context';
-import emailjs from 'emailjs-com'
+
 
 function App() {
   const {
@@ -21,37 +21,6 @@ function App() {
   } = useContext(Context);
 
   const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    let teamList=["","","",""];
-    for (const key in teams) {
-      if (Object.hasOwnProperty.call(teams, key)) {
-        const element = teams[key];
-        for (let index = 0; index < element.length; index++) {
-          const element2 = element[index];
-          if(element2!=undefined){
-            teamList[key]+= element2[0]+", " 
-          }
-        }
-      }
-    }
-
-    var templateParams = {
-      team1: teamList[0],
-      team2: teamList[1],
-      team3: teamList[2],
-      team4: teamList[3]
-    };
-    emailjs.send('service_29m1yon', 'template_i32jkmf', templateParams, 'user_vTDPwdmxg7t4L1q1rYMIS')
-    //emailjs.sendForm('service_29m1yon', 'template_i32jkmf', form.current, 'user_vTDPwdmxg7t4L1q1rYMIS')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-  };
 
   return (
     <>
@@ -97,14 +66,7 @@ function App() {
         #### Sortear Times ####
       </button>
         </div>}
-        <form ref={form} onSubmit={sendEmail}>
-          <label>Name</label>
-          <input type="text" name="user_name" />
-          <label>Email</label>
-          <input type="email" name="user_email" />
-          <label>Message</label>
-          <textarea name="message" />
-          <input type="submit" value="Send" />
+        <form ref={form}>
           <div data-testid="teams" className="Main-Team">
             {checked &&
               teams.map((element, index) => (

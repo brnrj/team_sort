@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Context from './Context';
 import { readRemoteFile } from 'react-papaparse';
 import imgUrl from '../dataImages';
+import emailjs from 'emailjs-com';
 
 function Provider({ children }) {
   const [overall] = useState(5);
@@ -26,8 +27,37 @@ function Provider({ children }) {
     );
   }
 
+  const sendEmail = (e) => {
+    let teamList=["","","",""];
+    for (const key in teams) {
+      if (Object.hasOwnProperty.call(teams, key)) {
+        const element = teams[key];
+        for (let index = 0; index < element.length; index++) {
+          const element2 = element[index];
+          if(element2 !== undefined){
+            teamList[key]+= element2[0]+", " 
+          }
+        }
+      }
+    }
+
+    var templateParams = {
+      team1: teamList[0],
+      team2: teamList[1],
+      team3: teamList[2],
+      team4: teamList[3]
+    };
+    emailjs.send('service_29m1yon', 'template_i32jkmf', templateParams, 'user_vTDPwdmxg7t4L1q1rYMIS')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
   function handleClick() {
     setChecked(true);
+    sendEmail();
   }
 
   function handleOnDrop(data) {

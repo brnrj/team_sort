@@ -47,7 +47,7 @@ function Provider({ children }) {
       team3: teamList[2],
       team4: teamList[3]
     };
-    emailjs.send('service_29m1yon', 'template_i32jkmf', templateParams, 'user_vTDPwdmxg7t4L1q1rYMIS')
+    emailjs.send(process.env.email_service_id, process.env.email_template, templateParams, process.env.email_user_id)
       .then((result) => {
           console.log(result.text);
       }, (error) => {

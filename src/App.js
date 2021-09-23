@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { CSVReader } from 'react-papaparse';
 import './App.css';
 import imgUrl from './dataImages';
 import Context from './context/Context';
+import emailjs from 'emailjs-com'
 
 function App() {
   const {
@@ -18,6 +19,20 @@ function App() {
     posicao,
     name,
   } = useContext(Context);
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('gmail', 'template_i32jkmf', form.current, 'user_vTDPwdmxg7t4L1q1rYMIS')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
   return (
     <>
       <div className="App">
@@ -62,7 +77,7 @@ function App() {
         #### Sortear Times ####
       </button>
         </div>}
-        <form name="formTeams">
+        <form ref={form} onChange={sendEmail}>
           <div data-testid="teams" className="Main-Team">
             {checked &&
               teams.map((element, index) => (

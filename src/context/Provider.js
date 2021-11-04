@@ -191,7 +191,7 @@ function Provider({ children }) {
 
     setRandomImg(getRandomArbitrary(0, imgUrl.length));
     let playingPlayers = getAllPlayers(data);
-    console.log(playingPlayers)
+    console.log("Jogadores sem ordenar", playingPlayers)
     let nrplayersPerTeam = getPlayersPerTeam(data);
     let nrTeams = getNumberOfTeams(data);
 
@@ -199,9 +199,9 @@ function Provider({ children }) {
     console.log('Number of teams = ' + nrTeams);
     console.log('Number of players on list = ' + playingPlayers.length);
     playingPlayers = sortRandomly(playingPlayers);
-    console.log(playingPlayers);
+    console.log("Jogadores ordenados", playingPlayers);
     let playingPlayersSortedByOverAll = sorteiaOSorteio(playingPlayers);
-    console.log(playingPlayersSortedByOverAll);
+    console.log("Balanceamento", playingPlayersSortedByOverAll);
 
     algoritmoGuloso(playingPlayersSortedByOverAll, nrplayersPerTeam, nrTeams);
   }, [data, overall, confirmado,]);

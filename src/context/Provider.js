@@ -140,7 +140,7 @@ function Provider({ children }) {
     }
   }
 
-  useEffect(() => {
+  useEffect(() => {    
     function getAllPlayers(data) {
       let allplayers = [];
       for (let i = 0; i <= data.length; i++) {
@@ -166,8 +166,32 @@ function Provider({ children }) {
       return data;
     }
 
+    function sorteiaOSorteio(data) {
+      for(let i = 0; i < data.length ; i += 1) {
+        if(i >= 0 && i <= 3) {
+          data[i][overall] = 7;
+        }else if(i >= 4 && i <= 7) {
+          data[i][overall] = 6;
+        }else if(i >= 8 && i <= 11) {
+          data[i][overall] = 5;
+        }else if(i >= 12 && i <= 15) {
+          data[i][overall] = 4;
+        }else if(i >= 16 && i <= 19) {
+          data[i][overall] = 3;
+        }else if(i >= 20 && i <= 23) {
+          data[i][overall] = 2;
+        }else if(i >= 24 && i <= 27) {
+          data[i][overall] = 1;
+        } else {
+          data[i][overall] = 0;
+        }
+      }
+      return data;
+    }
+
     setRandomImg(getRandomArbitrary(0, imgUrl.length));
     let playingPlayers = getAllPlayers(data);
+    console.log(playingPlayers)
     let nrplayersPerTeam = getPlayersPerTeam(data);
     let nrTeams = getNumberOfTeams(data);
 
@@ -175,9 +199,12 @@ function Provider({ children }) {
     console.log('Number of teams = ' + nrTeams);
     console.log('Number of players on list = ' + playingPlayers.length);
     playingPlayers = sortRandomly(playingPlayers);
+    console.log(playingPlayers);
+    let playingPlayersSortedByOverAll = sorteiaOSorteio(playingPlayers);
+    console.log(playingPlayersSortedByOverAll);
 
-    algoritmoGuloso(playingPlayers, nrplayersPerTeam, nrTeams);
-  }, [data, overall, confirmado]);
+    algoritmoGuloso(playingPlayersSortedByOverAll, nrplayersPerTeam, nrTeams);
+  }, [data, overall, confirmado,]);
 
   const context = {
     overall,

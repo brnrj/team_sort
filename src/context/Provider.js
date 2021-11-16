@@ -78,6 +78,7 @@ function Provider({ children }) {
     let time2 = [];
     let time3 = [];
     let time4 = [];
+    let time5 = [];
 
     if (nrTeams === '3') {
       let k = 0;
@@ -113,6 +114,27 @@ function Provider({ children }) {
         k++;
       }
       setTeams([[...time1], [...time2], [...time3], [...time4]]);
+    }
+
+    if (nrTeams === '5') {
+      let k = 0;
+      for (let i = 0; i < 32; i += 5) {
+        if (k % 2 === 0) {
+          time1.push(playingPlayers[i]);
+          time2.push(playingPlayers[i + 1]);
+          time3.push(playingPlayers[i + 2]);
+          time4.push(playingPlayers[i + 3]);
+          time5.push(playingPlayers[i + 4]);
+        } else {
+          time1.push(playingPlayers[i + 4]);
+          time2.push(playingPlayers[i + 3]);
+          time3.push(playingPlayers[i + 2]);
+          time4.push(playingPlayers[i + 1]);
+          time5.push(playingPlayers[i]);
+        }
+        k++;
+      }
+      setTeams([[...time1], [...time2], [...time3], [...time4], [...time5]]);
     }
   }
 

@@ -118,7 +118,7 @@ function Provider({ children }) {
 
     if (nrTeams === '5') {
       let k = 0;
-      for (let i = 0; i < 32; i += 5) {
+      for (let i = 0; i < 40; i += 5) {
         if (k % 2 === 0) {
           time1.push(playingPlayers[i]);
           time2.push(playingPlayers[i + 1]);

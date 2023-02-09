@@ -140,6 +140,16 @@ function Provider({ children }) {
     }
   }
 
+  function handleTeamOverall(data, index) {
+    const teamOverAll = data.map((e) => e.filter((e) => e !== undefined)).map((value) => value.reduce((acc, curr) => {
+      if (curr) {
+        return acc + Number(curr[overall].replace(',', '.'))
+      }
+    }, 0))
+    
+    return teamOverAll[index];
+  }
+
   useEffect(() => {
     function getAllPlayers(data) {
       let allplayers = [];
@@ -194,6 +204,7 @@ function Provider({ children }) {
     handleOnRemoveFile,
     imgUrl,
     posicao,
+    handleTeamOverall
   };
   return <Context.Provider value={context}>{children}</Context.Provider>;
 }

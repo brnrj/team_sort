@@ -18,6 +18,7 @@ function App() {
     teams,
     posicao,
     name,
+    handleTeamOverall
   } = useContext(Context);
 
   const form = useRef();
@@ -82,8 +83,8 @@ function App() {
                             : index === 1
                             ? 'player-info red'
                             : index === 2
-                            ? 'player-info green'
-                            : 'player-info pink'}`
+                            ? 'player-info yellow'
+                            : 'player-info white'}`
                         }
                       >
                         <span className="player_position">{value[posicao]}</span>
@@ -91,6 +92,7 @@ function App() {
                       </p>
                     ) : null
                   )}
+                  <span>{handleTeamOverall(teams, index)}</span>
                 </div>
               ))}
           </div>

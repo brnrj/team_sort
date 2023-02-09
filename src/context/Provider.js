@@ -13,7 +13,6 @@ function Provider({ children }) {
   const [data, setData] = useState([]);
   const [checked, setChecked] = useState(false);
   const [teams, setTeams] = useState([]);
-  const [teamOverall, setTeamOverall] = useState([]);
 
   function handleClickWeb() {
     readRemoteFile(

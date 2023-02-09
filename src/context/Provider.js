@@ -142,8 +142,11 @@ function Provider({ children }) {
 
   function handleTeamOverall(data, index) {
     const teamOverAll = data.map((e) => e.filter((e) => e !== undefined)).map((value) => value.reduce((acc, curr) => {
-      return acc + parseInt(curr[overall])
+      if (curr) {
+        return acc + Number(curr[overall].replace(',', '.'))
+      }
     }, 0))
+    
     return teamOverAll[index];
   }
 

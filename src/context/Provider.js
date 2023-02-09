@@ -141,11 +141,11 @@ function Provider({ children }) {
     }
   }
 
-  function handleTeamOverall(data) {
+  function handleTeamOverall(data, index) {
     const teamOverAll = data.map((e) => e.filter((e) => e !== undefined)).map((value) => value.reduce((acc, curr) => {
       return acc + parseInt(curr[overall])
     }, 0))
-    return setTeamOverall(teamOverAll);
+    return teamOverAll[index];
   }
 
   useEffect(() => {
@@ -185,7 +185,6 @@ function Provider({ children }) {
     playingPlayers = sortRandomly(playingPlayers);
 
     algoritmoGuloso(playingPlayers, nrplayersPerTeam, nrTeams);
-    handleTeamOverall(teams)
   }, [data, overall, confirmado]);
 
   const context = {
@@ -203,7 +202,7 @@ function Provider({ children }) {
     handleOnRemoveFile,
     imgUrl,
     posicao,
-    teamOverall
+    handleTeamOverall
   };
   return <Context.Provider value={context}>{children}</Context.Provider>;
 }

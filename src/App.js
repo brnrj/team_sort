@@ -18,7 +18,7 @@ function App() {
     teams,
     posicao,
     name,
-    teamOverall
+    handleTeamOverall
   } = useContext(Context);
 
   const form = useRef();
@@ -92,7 +92,7 @@ function App() {
                       </p>
                     ) : null
                   )}
-                  <span>{teamOverall[index]}</span>
+                  <span>{handleTeamOverall(teams, index)}</span>
                 </div>
               ))}
           </div>

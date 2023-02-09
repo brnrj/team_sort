@@ -13,6 +13,7 @@ function Provider({ children }) {
   const [data, setData] = useState([]);
   const [checked, setChecked] = useState(false);
   const [teams, setTeams] = useState([]);
+  const [teamOverall, setTeamOverall] = useState([]);
 
   function handleClickWeb() {
     readRemoteFile(
@@ -140,6 +141,13 @@ function Provider({ children }) {
     }
   }
 
+  function handleTeamOverall(data) {
+    const teamOverAll = data.map((e) => e.filter((e) => e !== undefined)).map((value) => value.reduce((acc, curr) => {
+      return acc + parseInt(curr[overall])
+    }, 0))
+    return setTeamOverall(teamOverAll);
+  }
+
   useEffect(() => {
     function getAllPlayers(data) {
       let allplayers = [];
@@ -177,6 +185,7 @@ function Provider({ children }) {
     playingPlayers = sortRandomly(playingPlayers);
 
     algoritmoGuloso(playingPlayers, nrplayersPerTeam, nrTeams);
+    handleTeamOverall(teams)
   }, [data, overall, confirmado]);
 
   const context = {
@@ -194,6 +203,7 @@ function Provider({ children }) {
     handleOnRemoveFile,
     imgUrl,
     posicao,
+    teamOverall
   };
   return <Context.Provider value={context}>{children}</Context.Provider>;
 }
